@@ -45,8 +45,8 @@
       "name": "Адвокат Андрей Аслониди",
       "description": "Защита по уголовным делам, сопровождение на допросах, защита бизнеса от необоснованного уголовного преследования.",
       "areaServed": { "@type": "City", "name": "Москва" },
-      "address": { "@type": "PostalAddress", "streetAddress": "Большая Лубянка, 5", "addressLocality": "Москва", "postalCode": "107031", "addressCountry": "RU" },
-      "openingHours": "Mo-Fr 09:00-18:00",
+      "address": { "@type": "PostalAddress", "streetAddress": "2-й Павелецкий проезд, 5с1", "addressLocality": "Москва", "postalCode": "115114", "addressCountry": "RU" },
+      "geo": { "@type": "GeoCoordinates", "latitude": 55.712715, "longitude": 37.644486 },
       "telephone": "+7-977-107-79-97",
       "email": "mailto:aslonidi.andrei@icloud.com",
       "founder": { "@id": "#person" },
@@ -356,8 +356,11 @@ em { font-style: normal; }
 .case__in::after { content: ''; position: absolute; right: -4rem; top: -4rem; width: 12rem; height: 12rem; border-radius: 50%; border: 1px solid var(--line-d); opacity: .5; pointer-events: none; }
 .case:hover .case__in { transform: translateY(-6px); box-shadow: 0 1.8rem 3rem -1.4rem rgba(10, 23, 19, .6); }
 .case__top { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--brass-2); font-weight: 500; }
+.case__top { flex-wrap: wrap; row-gap: .7rem; }
+.case__top > span:first-child, .case__tag { white-space: nowrap; }
 .case__tag { padding: .35rem .8rem; border: 1px solid var(--brass); border-radius: 999px; letter-spacing: .12em; text-transform: none; font-size: .78rem; }
 .case__art { margin-top: 1.9rem; font-family: var(--serif); font-size: clamp(3.4rem, 8vw, 4.6rem); line-height: 1; letter-spacing: -.03em; }
+.case__art--t { margin-top: 1.7rem; font-size: clamp(1.9rem, 4.4vw, 2.35rem); line-height: 1.12; letter-spacing: -.015em; text-wrap: balance; }
 .case__art small { display: block; margin-top: .5rem; font-family: var(--sans); font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--brass-2); font-weight: 500; }
 .case__court { margin-top: 1.1rem; font-family: var(--serif); font-size: 1.1rem; color: var(--on-dark-2); }
 .case__h { margin-top: 1.9rem; padding-top: 1.3rem; border-top: 1px solid var(--line-d); font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--brass-2); font-weight: 500; }
@@ -441,10 +444,6 @@ a.crow:hover > .icon { transform: translateX(4px); }
 
 /* Карта */
 .where { margin-top: clamp(4rem, 8vw, 6.5rem); padding-top: clamp(3rem, 6vw, 4.5rem); border-top: 1px solid var(--line-l); }
-.where__tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.2rem; }
-.tab { padding: .7rem 1.2rem; min-height: 2.75rem; border: 1px solid var(--line-l); background: transparent; font-size: .8125rem; letter-spacing: .08em; border-radius: 999px; transition: background-color .3s, color .3s, border-color .3s; }
-.tab:hover { border-color: var(--brass-deep); }
-.tab[aria-selected="true"] { background: var(--pine-900); color: var(--ivory); border-color: var(--pine-900); }
 .map { position: relative; height: clamp(18rem, 42vw, 30rem); background: var(--pine-900); border: 1px solid var(--line-l); overflow: hidden; }
 .map__cap { position: absolute; inset: 0; display: grid; place-items: center; color: var(--on-dark-2); font-family: var(--serif); font-size: 1.1rem; background: radial-gradient(60% 80% at 50% 50%, var(--pine-800), var(--pine-900)); transition: opacity .6s; }
 .map.is-loaded .map__cap { opacity: 0; pointer-events: none; }
@@ -459,9 +458,9 @@ a.crow:hover > .icon { transform: translateX(4px); }
 .office p + p { margin-top: .35rem; }
 .office .icon { width: 1.1rem; height: 1.1rem; margin-top: .2rem; color: var(--brass-deep); }
 .office__links { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin-top: 1rem; }
-.office__links button, .office__links a { background: none; border: 0; padding: .45rem 0; font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-deep); border-bottom: 1px solid currentColor; text-decoration: none; }
-.office__links button:hover, .office__links a:hover { color: var(--pine-900); }
-@media (min-width: 760px) { .offices { grid-template-columns: 1fr 1fr; } }
+.office__links a { background: none; border: 0; padding: .45rem 0; font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-deep); border-bottom: 1px solid currentColor; text-decoration: none; }
+.office__links a:hover { color: var(--pine-900); }
+@media (min-width: 760px) { .office { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 2rem; } .office h3 { grid-column: 1 / -1; } .office__links { margin-top: 0; justify-content: flex-end; } }
 
 /* =========================================================================
    ПОДВАЛ
@@ -475,6 +474,7 @@ a.crow:hover > .icon { transform: translateX(4px); }
 .foot li + li { margin-top: .15rem; }
 .foot a { text-decoration: none; display: inline-block; padding: .3rem 0; color: var(--on-dark-2); transition: color .3s; }
 .foot a:hover { color: var(--brass-2); }
+.foot__addr { margin-top: .6rem; padding: .3rem 0; color: var(--on-dark-2); font-size: .95rem; line-height: 1.55; }
 .foot__bar { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line-d); display: grid; gap: .9rem; font-size: .78rem; line-height: 1.65; color: rgba(243, 237, 221, .62); }
 .foot .foot__up { justify-self: start; display: inline-flex; white-space: nowrap; align-items: center; gap: .6rem; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--brass-2) !important; }
 @media (min-width: 800px) { .foot__grid { grid-template-columns: 1.4fr 1fr 1fr; gap: 4rem; } .foot__bar { grid-template-columns: 1fr auto; align-items: end; } .foot__up { justify-self: end; } }
@@ -705,7 +705,7 @@ a.crow:hover > .icon { transform: translateX(4px); }
     <header class="sec__head">
       <p class="kicker rv"><span>III · Дела</span></p>
       <h2 id="cases-title" class="rv" style="--d:80ms">Примеры <em style="color:var(--brass-deep)">из практики</em></h2>
-      <p class="rv" style="--d:140ms">Листайте вбок. Первое дело — по публикации в Telegram-канале адвоката, остальные примеры будут добавлены.</p>
+      <p class="rv" style="--d:140ms">Листайте вбок. Дела описаны по публикациям в Telegram-канале адвоката.</p>
     </header>
     <div class="car__ctrl rv" style="--d:200ms">
       <button class="car__btn" id="carPrev" type="button" aria-label="Предыдущее дело" disabled><svg class="icon" aria-hidden="true"><use href="#i-prev"/></svg></button>
@@ -715,7 +715,7 @@ a.crow:hover > .icon { transform: translateX(4px); }
 
   <div class="car rv" style="--d:120ms" role="region" aria-roledescription="карусель" aria-label="Дела из практики">
     <ul class="car__track" id="carTrack" tabindex="0" aria-label="Лента дел. Стрелки влево и вправо — листать">
-      <!-- Реальное дело (источник: Telegram-канал адвоката) -->
+      <!-- Реальные дела (источник: Telegram-канал адвоката, посты № 5, 8, 9) -->
       <li class="case" aria-label="Дело 1 из 4">
         <article class="case__in">
           <div class="case__top"><span>Дело № 01</span><span class="case__tag">Дело прекращено</span></div>
@@ -729,27 +729,42 @@ a.crow:hover > .icon { transform: translateX(4px); }
             <li>ранее не судим</li>
           </ul>
           <p class="case__res">Дело прекращено за примирением сторон — несмотря на возражения прокурора. Клиент остался без судимости, штрафа и иных последствий.</p>
-          <div class="case__link"><a class="link" href="https://t.me/advokat_aaslonidi" target="_blank" rel="noopener">Читать в канале<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="case__link"><a class="link" href="https://t.me/advokat_aaslonidi/5" target="_blank" rel="noopener">Читать в канале<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
       </li>
 
-      <!-- ЗАГЛУШКИ: скопируйте блок первого дела и замените содержимое. Ниже — места под следующие примеры. -->
-      <li class="case case--empty" aria-label="Дело 2 из 4" data-placeholder>
+      <!-- ЗАГЛУШКА: скопируйте блок любого дела выше и замените содержимое. Ниже — место под следующий пример. -->
+      <li class="case" aria-label="Дело 2 из 4">
         <article class="case__in">
-          <div class="case__top"><span>Дело № 02</span><span>Место для примера</span></div>
-          <p class="case__ghost" aria-hidden="true">02</p>
-          <h3>Здесь появится следующее дело</h3>
-          <p>Статья, суд, позиция защиты и результат. Материал готовится к публикации.</p>
+          <div class="case__top"><span>Дело № 02</span><span class="case__tag">Осталась свидетелем</span></div>
+          <p class="case__art case__art--t">Курьер — не соучастник<small>Мошенническая схема</small></p>
+          <p class="case__h">Что произошло</p>
+          <ul>
+            <li>девушка устроилась курьером: собеседование, трудовой договор, запечатанные посылки; о содержимом не знала</li>
+            <li>в посылках были деньги, которые мошенники обманом получили у пенсионеров</li>
+            <li>при очередной передаче её остановила полиция; она сразу сообщила о посылке и под контролем оперативников помогла задержать получателя</li>
+          </ul>
+          <p class="case__res">Главная задача — не дать следствию перевести её из свидетеля в обвиняемую. Защита выстроила позицию, и девушка осталась свидетелем: уголовная ответственность её не коснулась.</p>
+          <div class="case__link"><a class="link" href="https://t.me/advokat_aaslonidi/8" target="_blank" rel="noopener">Читать в канале<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
       </li>
-      <li class="case case--empty" aria-label="Дело 3 из 4" data-placeholder>
+
+      <li class="case" aria-label="Дело 3 из 4">
         <article class="case__in">
-          <div class="case__top"><span>Дело № 03</span><span>Место для примера</span></div>
-          <p class="case__ghost" aria-hidden="true">03</p>
-          <h3>Здесь появится следующее дело</h3>
-          <p>Статья, суд, позиция защиты и результат. Материал готовится к публикации.</p>
+          <div class="case__top"><span>Дело № 03</span><span class="case__tag">Арест отменён</span></div>
+          <p class="case__art case__art--t">Арест с денежных средств снят<small>Досудебная стадия</small></p>
+          <p class="case__court">Суд апелляционной инстанции</p>
+          <p class="case__h">Как это удалось</p>
+          <ul>
+            <li>целевое назначение средств: у этих денег специальный правовой режим</li>
+            <li>отсутствие связи с инкриминируемым деянием: арест наложен без достаточных оснований</li>
+            <li>несоразмерность: арест затронул единственный источник содержания семьи</li>
+          </ul>
+          <p class="case__res">По ходатайству следователя суд первой инстанции арестовал средства на банковском счёте. Защита обжаловала решение — апелляция согласилась с её доводами и отменила арест.</p>
+          <div class="case__link"><a class="link" href="https://t.me/advokat_aaslonidi/9" target="_blank" rel="noopener">Читать в канале<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
       </li>
+
       <li class="case case--empty" aria-label="Дело 4 из 4" data-placeholder>
         <article class="case__in">
           <div class="case__top"><span>Дело № 04</span><span>Место для примера</span></div>
@@ -836,47 +851,31 @@ a.crow:hover > .icon { transform: translateX(4px); }
       </form>
     </div>
 
-    <!-- Карта: офисы коллегии SLK Legal Group (адреса — с сайта slklegalgroup.ru) -->
+    <!-- Адрес: бизнес-центр Riverdale (координаты подтверждены на Яндекс.Картах) -->
     <div class="where" id="map" role="group" aria-labelledby="where-title">
       <header class="sec__head" style="margin-bottom:1.6rem">
         <p class="kicker rv"><span>Как добраться</span></p>
-        <h2 id="where-title" class="rv" style="--d:80ms">Офисы коллегии в центре Москвы</h2>
+        <h2 id="where-title" class="rv" style="--d:80ms">Офис в <span style="white-space:nowrap">бизнес-центре</span> Riverdale</h2>
       </header>
 
-      <div class="where__tabs rv" role="tablist" aria-label="Выбор офиса на карте">
-        <button class="tab" type="button" role="tab" id="tab-both" aria-selected="true" aria-controls="mapbox" data-map="both">Оба офиса</button>
-        <button class="tab" type="button" role="tab" id="tab-lub" aria-selected="false" aria-controls="mapbox" tabindex="-1" data-map="lub">Большая Лубянка, 5</button>
-        <button class="tab" type="button" role="tab" id="tab-kuz" aria-selected="false" aria-controls="mapbox" tabindex="-1" data-map="kuz">Кузнецкий Мост, 21/5</button>
-      </div>
-
-      <div class="map rv" id="mapbox" role="tabpanel" aria-labelledby="tab-both">
+      <div class="map rv" id="mapbox">
         <p class="map__cap">Загружаю Яндекс.Карту…</p>
-        <a class="map__open" id="mapOpen" href="https://yandex.ru/maps/?ll=37.627180,55.762214&amp;z=17&amp;pt=37.627921,55.762424,pm2rdm~37.626439,55.762004,pm2blm" target="_blank" rel="noopener">Открыть в Яндекс.Картах<svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a>
-        <iframe id="mapFrame" title="Карта Яндекс: офисы коллегии на Большой Лубянке и Кузнецком Мосту" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <a class="map__open" id="mapOpen" href="https://yandex.ru/maps/?ll=37.644486%2C55.712715&amp;z=16&amp;pt=37.644486%2C55.712715%2Cpm2rdm" target="_blank" rel="noopener">Открыть в Яндекс.Картах<svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a>
+        <iframe id="mapFrame" title="Карта Яндекс: бизнес-центр Riverdale, 2-й Павелецкий проезд, 5с1" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
       </div>
 
-      <ul class="offices rv" role="list">
-        <li class="office">
-          <h3>Большая Лубянка, 5</h3>
-          <p><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Москва, 107031 · рядом метро «Лубянка» и «Кузнецкий Мост»</p>
-          <p><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Пн–пт, 09:00–18:00</p>
+      <div class="offices rv">
+        <div class="office">
+          <h3>Бизнес-центр Riverdale</h3>
+          <p><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>г. Москва, 2-й Павелецкий проезд, 5с1</span></p>
           <div class="office__links">
-            <button type="button" data-map="lub">Показать на карте</button>
-            <a href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%20%D0%9B%D1%83%D0%B1%D1%8F%D0%BD%D0%BA%D0%B0%2C%205" target="_blank" rel="noopener">Открыть в Яндекс.Картах</a>
+            <a href="https://yandex.ru/maps/?rtext=~55.712715%2C37.644486&amp;rtt=auto" target="_blank" rel="noopener">Построить маршрут</a>
+            <a href="https://yandex.ru/maps/?ll=37.644486%2C55.712715&amp;z=16&amp;pt=37.644486%2C55.712715%2Cpm2rdm" target="_blank" rel="noopener">Открыть в Яндекс.Картах</a>
           </div>
-        </li>
-        <li class="office">
-          <h3>Кузнецкий Мост, 21/5</h3>
-          <p><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Москва, 107031 · рядом метро «Кузнецкий Мост» и «Лубянка»</p>
-          <p><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Пн–пт, 09:00–18:00</p>
-          <div class="office__links">
-            <button type="button" data-map="kuz">Показать на карте</button>
-            <a href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9A%D1%83%D0%B7%D0%BD%D0%B5%D1%86%D0%BA%D0%B8%D0%B9%20%D0%9C%D0%BE%D1%81%D1%82%2C%2021%2F5" target="_blank" rel="noopener">Открыть в Яндекс.Картах</a>
-          </div>
-        </li>
-      </ul>
-      <p class="fine" style="margin-top:.9rem">Это офисы коллегии адвокатов SLK Legal Group. Чтобы договориться о встрече, позвоните или напишите в Telegram.</p>
-      <noscript><p><a href="https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B0%D1%8F%20%D0%9B%D1%83%D0%B1%D1%8F%D0%BD%D0%BA%D0%B0%2C%205">Открыть адрес в Яндекс.Картах</a></p></noscript>
+        </div>
+      </div>
+      <p class="fine" style="margin-top:.9rem">Чтобы договориться о встрече, позвоните или напишите в Telegram.</p>
+      <noscript><p><a href="https://yandex.ru/maps/?ll=37.644486%2C55.712715&amp;z=16&amp;pt=37.644486%2C55.712715%2Cpm2rdm">Открыть адрес в Яндекс.Картах</a></p></noscript>
     </div>
   </div>
 </section>
@@ -906,6 +905,7 @@ a.crow:hover > .icon { transform: translateX(4px); }
           <li><a href="tel:+79771077997">+7 (977) 107-79-97</a></li>
           <li><a href="mailto:aslonidi.andrei@icloud.com">aslonidi.andrei@icloud.com</a></li>
           <li><a href="https://t.me/advokat_aslonidi" target="_blank" rel="noopener">Telegram</a></li>
+          <li class="foot__addr">г. Москва, 2-й Павелецкий проезд, 5с1<br>бизнес-центр Riverdale</li>
         </ul>
       </div>
     </div>
@@ -1125,46 +1125,13 @@ a.crow:hover > .icon { transform: translateX(4px); }
   });
 
   /* ---------- Яндекс.Карта ---------- */
-  // Координаты взяты со страниц Яндекс.Карт (lon,lat). Проверьте положение меток глазами.
-  var PTS = '37.627921,55.762424,pm2rdm~37.626439,55.762004,pm2blm';
-  var MAPS = {
-    both: { ll: '37.627180,55.762214', z: 17 },
-    lub: { ll: '37.627921,55.762424', z: 18 },
-    kuz: { ll: '37.626439,55.762004', z: 18 }
-  };
-  var mapBox = $('#mapbox'), mapFrame = $('#mapFrame'), mapKey = 'both', mapActive = false;
-  function mapUrl(k) { return 'https://yandex.ru/map-widget/v1/?ll=' + MAPS[k].ll + '&z=' + MAPS[k].z + '&l=map&pt=' + PTS; }
-  function showMap(k, focusTab) {
-    mapKey = k;
-    $$('.tab').forEach(function (t) {
-      var on = t.getAttribute('data-map') === k;
-      t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
-      if (on) { mapBox.setAttribute('aria-labelledby', t.id); if (focusTab) t.focus(); }
-    });
-    var mo = $('#mapOpen'); if (mo) mo.href = 'https://yandex.ru/maps/?ll=' + MAPS[k].ll + '&z=' + MAPS[k].z + '&pt=' + PTS;
-    if (mapActive) { mapBox.classList.remove('is-loaded'); mapFrame.src = mapUrl(k); }
-  }
+  // Бизнес-центр Riverdale, 2-й Павелецкий проезд, 5с1 (lon,lat — по данным Яндекс.Карт)
+  var LL = '37.644486,55.712715';
+  var mapBox = $('#mapbox'), mapFrame = $('#mapFrame'), mapActive = false;
   mapFrame.addEventListener('load', function () { if (mapFrame.getAttribute('src')) mapBox.classList.add('is-loaded'); });
-  function activateMap() { if (mapActive) return; mapActive = true; mapFrame.src = mapUrl(mapKey); }
+  function activateMap() { if (mapActive) return; mapActive = true; mapFrame.src = 'https://yandex.ru/map-widget/v1/?ll=' + LL + '&z=16&l=map&pt=' + LL + ',pm2rdm'; }
   if (hasIO) { var mo2 = new IntersectionObserver(function (en, o) { if (en[0].isIntersecting) { activateMap(); o.disconnect(); } }, { rootMargin: '300px 0px' }); mo2.observe(mapBox); }
   else { activateMap(); }
-  $$('[data-map]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      showMap(b.getAttribute('data-map'), false);
-      if (!b.classList.contains('tab')) mapBox.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
-    });
-  });
-  var tabs = $$('.tab');
-  tabs.forEach(function (t, i) {
-    t.addEventListener('keydown', function (e) {
-      var n = null;
-      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-      else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-      else if (e.key === 'Home') n = 0;
-      else if (e.key === 'End') n = tabs.length - 1;
-      if (n !== null) { e.preventDefault(); showMap(tabs[n].getAttribute('data-map'), true); }
-    });
-  });
 
   /* ---------- Форма (mailto) ---------- */
   var form = $('#contactForm'), statusEl = $('#formStatus'), MAIL = 'aslonidi.andrei@icloud.com';
