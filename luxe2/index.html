@@ -351,7 +351,7 @@ em { font-style: normal; }
 .car__btn:disabled { opacity: .35; cursor: default; }
 .car__btn .icon { width: 1.3rem; height: 1.3rem; }
 .car { --edge: max(var(--pad), calc((100% - var(--max)) / 2)); }
-.car__track { display: flex; gap: clamp(1rem, 2vw, 1.5rem); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding-inline: var(--edge); scroll-padding-inline: var(--edge); padding-block: .5rem 1.25rem; scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab; }
+.car__track { --gap: clamp(1rem, 2vw, 1.5rem); display: flex; gap: var(--gap); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding-inline: var(--edge); scroll-padding-inline: var(--edge); padding-block: .5rem 1.25rem; scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab; }
 .car__track::-webkit-scrollbar { display: none; }
 .car__track.is-drag { scroll-snap-type: none; cursor: grabbing; user-select: none; }
 .car__track.is-drag * { pointer-events: none; }
@@ -374,13 +374,7 @@ em { font-style: normal; }
 .case__res { margin-top: 1.5rem; padding: 1.1rem 1.2rem; background: rgba(196, 162, 101, .1); border-left: 2px solid var(--brass); font-family: var(--serif); font-size: 1.05rem; line-height: 1.5; }
 .case__link { margin-top: auto; padding-top: 1.2rem; }
 .case__link .link { color: var(--brass-2); padding-block: .8rem; }
-.case--empty .case__in { background: transparent; color: var(--ink); border: 1px dashed var(--brass-deep); }
-.case--empty .case__in::after { border-color: rgba(122, 90, 34, .3); }
-.case--empty:hover .case__in { transform: none; box-shadow: none; }
-.case--empty .case__top { color: var(--brass-deep); }
-.case--empty .case__ghost { flex: 1; margin: 0; padding: 0; display: grid; place-items: center; font-family: var(--serif); font-size: clamp(6rem, 16vw, 9rem); line-height: 1; color: rgba(122, 90, 34, .24); letter-spacing: -.04em; min-height: 9rem; }
-.case--empty h3 { font-size: 1.5rem; line-height: 1.25; }
-.case--empty p { margin-top: .8rem; font-size: .96rem; color: var(--ink-2); line-height: 1.6; }
+@media (min-width: 1280px) { .case { flex-basis: calc((100% - 2 * var(--gap)) / 3); } .case__in { padding: 2rem; } .case__art--t { font-size: 2.05rem; } .case__court { font-size: 1.02rem; } .case__tag { font-size: .74rem; padding: .3rem .7rem; } }
 .car__foot { display: flex; align-items: center; gap: 1.2rem; margin-top: 1.25rem; }
 .car__bar { flex: 1; height: 1px; background: var(--line-l); position: relative; overflow: hidden; }
 .car__fill { position: absolute; inset: 0; background: var(--brass-deep); transform-origin: left; transform: scaleX(.25); transition: transform .25s linear; }
@@ -720,10 +714,10 @@ a.crow:hover > .icon { transform: translateX(4px); }
   <div class="car rv" style="--d:120ms" role="region" aria-roledescription="карусель" aria-label="Дела из практики">
     <ul class="car__track" id="carTrack" tabindex="0" aria-label="Лента дел. Стрелки влево и вправо — листать">
       <!-- Реальные дела (источник: Telegram-канал адвоката, посты № 5, 8, 9) -->
-      <li class="case" aria-label="Дело 1 из 4">
+      <li class="case" aria-label="Дело 1 из 3">
         <article class="case__in">
-          <div class="case__top"><span>Дело № 01</span><span class="case__tag">Дело прекращено</span></div>
-          <p class="case__art">ст. 161<small>УК РФ · Грабёж</small></p>
+          <div class="case__top"><span>Дело № 01</span><span class="case__tag">Без судимости</span></div>
+          <p class="case__art case__art--t">Дело о грабеже прекращено<small>ст. 161 УК РФ</small></p>
           <p class="case__court">Никулинский районный суд г. Москвы</p>
           <p class="case__h">Позиция защиты</p>
           <ul>
@@ -738,7 +732,7 @@ a.crow:hover > .icon { transform: translateX(4px); }
       </li>
 
       <!-- ЗАГЛУШКА: скопируйте блок любого дела выше и замените содержимое. Ниже — место под следующий пример. -->
-      <li class="case" aria-label="Дело 2 из 4">
+      <li class="case" aria-label="Дело 2 из 3">
         <article class="case__in">
           <div class="case__top"><span>Дело № 02</span><span class="case__tag">Осталась свидетелем</span></div>
           <p class="case__art case__art--t">Курьер — не соучастник<small>Мошенническая схема</small></p>
@@ -753,7 +747,7 @@ a.crow:hover > .icon { transform: translateX(4px); }
         </article>
       </li>
 
-      <li class="case" aria-label="Дело 3 из 4">
+      <li class="case" aria-label="Дело 3 из 3">
         <article class="case__in">
           <div class="case__top"><span>Дело № 03</span><span class="case__tag">Арест отменён</span></div>
           <p class="case__art case__art--t">Арест с денежных средств снят<small>Досудебная стадия</small></p>
@@ -769,21 +763,13 @@ a.crow:hover > .icon { transform: translateX(4px); }
         </article>
       </li>
 
-      <li class="case case--empty" aria-label="Дело 4 из 4" data-placeholder>
-        <article class="case__in">
-          <div class="case__top"><span>Дело № 04</span><span>Место для примера</span></div>
-          <p class="case__ghost" aria-hidden="true">04</p>
-          <h3>Здесь появится следующее дело</h3>
-          <p>Статья, суд, позиция защиты и результат. Материал готовится к публикации.</p>
-        </article>
-      </li>
     </ul>
   </div>
 
   <div class="wrap">
     <div class="car__foot" aria-hidden="true">
       <div class="car__bar"><span class="car__fill" id="carFill"></span></div>
-      <span class="car__count" id="carCount">01 / 04</span>
+      <span class="car__count" id="carCount">01 / 03</span>
     </div>
     <p class="car__hint"><svg class="icon" aria-hidden="true"><use href="#i-swipe"/></svg>Проведите пальцем вбок, чтобы увидеть другие дела</p>
     <p class="fine rv" style="margin-top:1.6rem;max-width:42rem">Результат по каждому делу определяется его обстоятельствами. Прошлые результаты не гарантируют аналогичного исхода в других делах.</p>
@@ -1052,6 +1038,9 @@ a.crow:hover > .icon { transform: translateX(4px); }
     var max = track.scrollWidth - track.clientWidth;
     var p = max > 0 ? track.scrollLeft / max : 1;
     fill.style.transform = 'scaleX(' + Math.max(0.04, p).toFixed(3) + ')';
+    // когда все дела помещаются в ряд, стрелки и полоса прогресса не нужны
+    var fits = max <= 4;
+    [prev.parentNode, count.parentNode].forEach(function (el) { el.style.display = fits ? 'none' : ''; });
     prev.disabled = track.scrollLeft < 4;
     next.disabled = track.scrollLeft > max - 4;
     var base = cards[0] ? cards[0].offsetLeft : 0;
